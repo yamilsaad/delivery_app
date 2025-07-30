@@ -1,5 +1,5 @@
 import React from 'react'
-import altairLogo from '../assets/images/altair-logo-transparente.png'
+import altairLogo from '../assets/images/altair-logo.svg'
 
 const Home = ({ onShowMenu }) => {
   return (
@@ -10,7 +10,7 @@ const Home = ({ onShowMenu }) => {
           <img 
             src={altairLogo} 
             alt="Altair Express Logo" 
-            className="w-56 h-auto sm:w-64 object-contain drop-shadow-lg"
+            className="w-56 h-auto sm:w-64 object-contain drop-shadow-lg filter brightness-0"
           />
         </div>
         <p className="text-lg sm:text-xl text-[#8B2D27] mb-6 sm:mb-8 font-bold">Comida Árabe</p>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import altairLogo from '../assets/images/altair-logo-transparente.png'
+import altairLogo from '../assets/images/altair-logo.svg'
 
 const Header = ({ onShowCart, cartItemCount }) => {
   const [isBouncing, setIsBouncing] = useState(false)
@@ -22,7 +22,7 @@ const Header = ({ onShowCart, cartItemCount }) => {
               <img 
                 src={altairLogo} 
                 alt="Altair Logo" 
-                className="w-10 h-10 sm:w-12 sm:h-12 object-contain"
+                className="w-10 h-10 sm:w-12 sm:h-12 object-contain filter brightness-0"
               />
             </div>
             <div>
