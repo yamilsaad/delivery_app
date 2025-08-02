@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Header from './components/Header'
-import Inicio from './pages/Inicio_page'
 import Home from './pages/Home'
 import Menu from './pages/Menu'
+import InicioPage from './pages/Inicio_page'
 import Cart from './components/Cart'
 import Toast from './components/Toast'
+import './App.css'
 
 function App() {
   const [currentPage, setCurrentPage] = useState('inicio')
@@ -38,7 +39,7 @@ function App() {
       removeFromCart(itemId)
       return
     }
-    
+
     setCart(prevCart =>
       prevCart.map(item =>
         item.id === itemId ? { ...item, quantity: newQuantity } : item
@@ -53,7 +54,7 @@ function App() {
   const sendWhatsApp = () => {
     setShowCart(false)
     setCart([])
-    
+
     // Mostrar toast de confirmación
     setToast({
       isVisible: true,
@@ -81,7 +82,7 @@ function App() {
       // Dentro del return principal de App
 <main>
   {currentPage === 'inicio' && (
-    <Inicio />
+    <InicioPage />
   )}
 
   {currentPage === 'home' && (
