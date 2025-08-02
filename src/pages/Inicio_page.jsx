@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 
 // Importación de imágenes desde src/assets/images
-import logo from "../assets/images/delivery_express_logo.png";
+import logo from "../assets/images/logo_solo_trans.png";
 import altairLogo from "../assets/images/altair-logo.svg";
 
 const businesses = [
@@ -133,9 +133,9 @@ const InicioPage = ({ onNavigateToMenu }) => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between py-4">
             <div className="flex items-center space-x-4">
-              <img src={logo} alt="Delivery Express Logo" className="h-12 w-12" />
+              <img src={logo} alt="Delivery Express Logo" className="h-16 w-16" />
               <div>
-                <h1 className="text-2xl font-bold text-red-600">Delivery Express</h1>
+                <h1 className="text-3xl font-bold text-red-600">Delivery Express</h1>
                 <p className="text-sm text-gray-500">Tu plataforma de delivery favorita</p>
               </div>
             </div>
@@ -329,7 +329,7 @@ const InicioPage = ({ onNavigateToMenu }) => {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="col-span-1 md:col-span-2">
               <div className="flex items-center space-x-3 mb-4">
-                <img src={logo} alt="Delivery Express Logo" className="h-10 w-10" />
+                <img src={logo} alt="Delivery Express Logo" className="h-12 w-12" />
                 <h3 className="text-xl font-bold">Delivery Express</h3>
               </div>
               <p className="text-gray-300 mb-4">
