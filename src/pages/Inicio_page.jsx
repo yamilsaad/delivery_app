@@ -135,15 +135,15 @@ const InicioPage = ({ onNavigateToMenu }) => {
             <div className="flex items-center space-x-4">
               <img src={logo} alt="Delivery Express Logo" className="h-16 w-16" />
               <div>
-                <h1 className="text-3xl font-bold text-red-600">Delivery Express</h1>
-                <p className="text-sm text-gray-500">Tu plataforma de delivery favorita</p>
+                <h1 className="text-3xl font-bold text-[#F97316] font-sans">Delivery Express</h1>
+                <p className="text-sm text-[#1E40AF]">Tu plataforma de delivery favorita</p>
               </div>
             </div>
             <nav className="space-x-6 hidden md:flex">
-              <a href="#negocios" className="text-gray-700 hover:text-red-600 transition">Negocios</a>
-              <a href="#como-funciona" className="text-gray-700 hover:text-red-600 transition">Cómo funciona</a>
-              <a href="#contacto" className="text-gray-700 hover:text-red-600 transition">Contacto</a>
-              <button className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition">
+              <a href="#negocios" className="text-[#1E40AF] hover:text-[#F97316] transition font-medium">Negocios</a>
+              <a href="#como-funciona" className="text-[#1E40AF] hover:text-[#F97316] transition font-medium">Cómo funciona</a>
+              <a href="#contacto" className="text-[#1E40AF] hover:text-[#F97316] transition font-medium">Contacto</a>
+              <button className="bg-[#F97316] text-white px-4 py-2 rounded-lg hover:bg-[#1E40AF] transition font-medium">
                 Registrar negocio
               </button>
             </nav>
@@ -152,26 +152,26 @@ const InicioPage = ({ onNavigateToMenu }) => {
       </header>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-red-50 to-orange-50 py-16 px-4">
+      <section className="bg-gradient-to-br from-[#1E40AF] to-[#1E3A8A] py-16 px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-800">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white font-sans">
             La comida que amás, 
-            <span className="text-red-600"> en minutos</span>
+            <span className="text-[#F97316]"> en minutos</span>
           </h2>
-          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+          <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
             Descubre los mejores restaurantes de tu ciudad. Pedí fácil, rápido y directo desde cada negocio.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <div className="flex items-center space-x-2 text-gray-600">
-              <span className="text-green-500 text-xl">✓</span>
+            <div className="flex items-center space-x-2 text-blue-100">
+              <span className="text-[#F97316] text-xl">✓</span>
               <span>Sin comisiones extras</span>
             </div>
-            <div className="flex items-center space-x-2 text-gray-600">
-              <span className="text-green-500 text-xl">✓</span>
+            <div className="flex items-center space-x-2 text-blue-100">
+              <span className="text-[#F97316] text-xl">✓</span>
               <span>Pedidos directos al restaurante</span>
             </div>
-            <div className="flex items-center space-x-2 text-gray-600">
-              <span className="text-green-500 text-xl">✓</span>
+            <div className="flex items-center space-x-2 text-blue-100">
+              <span className="text-[#F97316] text-xl">✓</span>
               <span>Delivery rápido</span>
             </div>
           </div>
@@ -189,7 +189,7 @@ const InicioPage = ({ onNavigateToMenu }) => {
                 placeholder="Buscar restaurantes..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
+                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F97316] focus:border-transparent"
               />
               <span className="absolute left-3 top-3 text-gray-400 text-xl">🔍</span>
             </div>
@@ -200,7 +200,7 @@ const InicioPage = ({ onNavigateToMenu }) => {
               <select
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
-                className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500"
+                className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F97316] text-[#1E40AF]"
               >
                 {categories.map(category => (
                   <option key={category} value={category}>{category}</option>
@@ -211,7 +211,7 @@ const InicioPage = ({ onNavigateToMenu }) => {
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
-                className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500"
+                className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F97316] text-[#1E40AF]"
               >
                 <option value="featured">Destacados</option>
                 <option value="rating">Mejor calificados</option>
@@ -308,7 +308,7 @@ const InicioPage = ({ onNavigateToMenu }) => {
                     <button 
                       className={`w-full font-semibold py-2 px-4 rounded-lg transition-all duration-300 ${
                         business.isOpen
-                          ? 'bg-gradient-to-r from-red-500 to-orange-600 text-white hover:from-red-600 hover:to-orange-700'
+                          ? 'bg-gradient-to-r from-[#F97316] to-[#1E40AF] text-white hover:from-[#1E40AF] hover:to-[#F97316]'
                           : 'bg-gray-300 text-gray-500 cursor-not-allowed'
                       }`}
                       disabled={!business.isOpen}
@@ -324,40 +324,40 @@ const InicioPage = ({ onNavigateToMenu }) => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-800 text-white py-12 px-4">
+      <footer className="bg-[#1E40AF] text-white py-12 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="col-span-1 md:col-span-2">
               <div className="flex items-center space-x-3 mb-4">
                 <img src={logo} alt="Delivery Express Logo" className="h-12 w-12" />
-                <h3 className="text-xl font-bold">Delivery Express</h3>
+                <h3 className="text-xl font-bold font-sans text-[#F97316]">Delivery Express</h3>
               </div>
-              <p className="text-gray-300 mb-4">
+              <p className="text-blue-100 mb-4">
                 La plataforma que conecta tu negocio directamente con tus clientes, sin comisiones extras.
               </p>
               <div className="flex space-x-4">
-                <a href="#" className="text-gray-300 hover:text-white">📧 Contacto</a>
-                <a href="#" className="text-gray-300 hover:text-white">📱 WhatsApp</a>
+                <a href="#" className="text-blue-100 hover:text-[#F97316] transition">📧 Contacto</a>
+                <a href="#" className="text-blue-100 hover:text-[#F97316] transition">📱 WhatsApp</a>
               </div>
             </div>
             <div>
-              <h4 className="font-semibold mb-4">Para Restaurantes</h4>
-              <ul className="space-y-2 text-gray-300">
-                <li><a href="#" className="hover:text-white">Registrar negocio</a></li>
-                <li><a href="#" className="hover:text-white">Precios</a></li>
-                <li><a href="#" className="hover:text-white">Soporte</a></li>
+              <h4 className="font-semibold mb-4 text-[#F97316]">Para Restaurantes</h4>
+              <ul className="space-y-2 text-blue-100">
+                <li><a href="#" className="hover:text-[#F97316] transition">Registrar negocio</a></li>
+                <li><a href="#" className="hover:text-[#F97316] transition">Precios</a></li>
+                <li><a href="#" className="hover:text-[#F97316] transition">Soporte</a></li>
               </ul>
             </div>
             <div>
-              <h4 className="font-semibold mb-4">Para Clientes</h4>
-              <ul className="space-y-2 text-gray-300">
-                <li><a href="#" className="hover:text-white">Cómo funciona</a></li>
-                <li><a href="#" className="hover:text-white">Ayuda</a></li>
-                <li><a href="#" className="hover:text-white">Términos</a></li>
+              <h4 className="font-semibold mb-4 text-[#F97316]">Para Clientes</h4>
+              <ul className="space-y-2 text-blue-100">
+                <li><a href="#" className="hover:text-[#F97316] transition">Cómo funciona</a></li>
+                <li><a href="#" className="hover:text-[#F97316] transition">Ayuda</a></li>
+                <li><a href="#" className="hover:text-[#F97316] transition">Términos</a></li>
               </ul>
             </div>
           </div>
-          <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+          <div className="border-t border-blue-700 mt-8 pt-8 text-center text-blue-200">
             © {new Date().getFullYear()} Delivery Express. Todos los derechos reservados.
           </div>
         </div>
