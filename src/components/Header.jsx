@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import altairLogo from '../assets/images/altair-logo.svg'
 
-const Header = ({ onShowCart, cartItemCount }) => {
+const Header = ({ onShowCart, cartItemCount, onBackToHome }) => {
   const [isBouncing, setIsBouncing] = useState(false)
 
   useEffect(() => {
@@ -31,19 +31,31 @@ const Header = ({ onShowCart, cartItemCount }) => {
             </div>
           </div>
 
-          {/* Carrito */}
-          <button 
-            onClick={onShowCart}
-            className="relative bg-[#F4ECD8] hover:bg-[#F4F0E5] text-[#8B2D27] px-3 py-2 sm:px-4 sm:py-2 rounded-lg transition-all duration-300 flex items-center space-x-1 sm:space-x-2 text-sm sm:text-base shadow-md hover:shadow-lg"
-          >
-            <span className="text-lg sm:text-xl">🛒</span>
-            <span className="font-semibold hidden sm:inline">Carrito</span>
-            {cartItemCount > 0 && (
-              <span className={`absolute -top-1 -right-1 sm:-top-2 sm:-right-2 bg-[#8B2D27] text-[#F4ECD8] text-xs rounded-full w-5 h-5 sm:w-6 sm:h-6 flex items-center justify-center font-bold transition-transform duration-300 ${isBouncing ? 'scale-125' : 'scale-100'}`}>
-                {cartItemCount}
-              </span>
+          {/* Botones de navegación */}
+          <div className="flex items-center space-x-2 sm:space-x-3">
+            {onBackToHome && (
+              <button
+                onClick={onBackToHome}
+                className="bg-[#F4ECD8] hover:bg-[#F4F0E5] text-[#8B2D27] px-3 py-2 sm:px-4 sm:py-2 rounded-lg transition-all duration-300 flex items-center space-x-1 sm:space-x-2 text-sm sm:text-base shadow-md hover:shadow-lg"
+              >
+                <span className="text-lg sm:text-xl">🏠</span>
+                <span className="font-semibold hidden sm:inline">Inicio</span>
+              </button>
             )}
-          </button>
+            
+            <button 
+              onClick={onShowCart}
+              className="relative bg-[#F4ECD8] hover:bg-[#F4F0E5] text-[#8B2D27] px-3 py-2 sm:px-4 sm:py-2 rounded-lg transition-all duration-300 flex items-center space-x-1 sm:space-x-2 text-sm sm:text-base shadow-md hover:shadow-lg"
+            >
+              <span className="text-lg sm:text-xl">🛒</span>
+              <span className="font-semibold hidden sm:inline">Carrito</span>
+              {cartItemCount > 0 && (
+                <span className={`absolute -top-1 -right-1 sm:-top-2 sm:-right-2 bg-[#8B2D27] text-[#F4ECD8] text-xs rounded-full w-5 h-5 sm:w-6 sm:h-6 flex items-center justify-center font-bold transition-transform duration-300 ${isBouncing ? 'scale-125' : 'scale-100'}`}>
+                  {cartItemCount}
+                </span>
+              )}
+            </button>
+          </div>
         </div>
       </div>
     </header>

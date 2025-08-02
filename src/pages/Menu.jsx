@@ -74,4 +74,4 @@ const Menu = ({ onAddToCart, onBackToHome }) => {
   )
 }
 
-export default Menu 
+export default Menu

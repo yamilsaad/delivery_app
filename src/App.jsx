@@ -77,6 +77,7 @@ function App() {
         <Header 
           onShowCart={() => setShowCart(true)}
           cartItemCount={getCartItemCount()}
+          onBackToHome={() => setCurrentPage('inicio')}
         />
       )}
 
