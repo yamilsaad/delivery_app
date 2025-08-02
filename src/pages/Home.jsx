@@ -19,7 +19,7 @@ const Home = ({ onShowMenu }) => {
           <p className="text-base sm:text-lg text-[#1E40AF] mb-4">
             Descubre los sabores auténticos de la cocina árabe
           </p>
-          <div className="flex flex-col sm:flex-row justify-center space-y-2 sm:space-y-0 sm:space-x-4 text-sm text-[#F97316]"></div>
+          <div className="flex flex-col sm:flex-row justify-center space-y-2 sm:space-y-0 sm:space-x-4 text-sm text-[#F97316]">
             <span>🍖 KUPI al Horno</span>
             <span>🥟 Sfihas</span>
             <span>🥬 Falafel</span>
@@ -34,7 +34,7 @@ const Home = ({ onShowMenu }) => {
         </button>
         {/* Información adicional */}
         <div className="mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-[#F97316]/30">
-          <div className="grid grid-cols-2 gap-4 text-sm text-[#1E40AF]"></div>
+          <div className="grid grid-cols-2 gap-4 text-sm text-[#1E40AF]">
             <div className="flex items-center justify-center space-x-2">
               <span>🚚</span>
               <span>Delivery</span>
