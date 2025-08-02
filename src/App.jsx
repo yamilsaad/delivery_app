@@ -72,30 +72,31 @@ function App() {
 
   return (
     <div className="App">
-      {/* Header siempre visible */}
-      <Header 
-        onShowCart={() => setShowCart(true)}
-        cartItemCount={getCartItemCount()}
-      />
+      {/* Header solo visible en páginas de negocio específico */}
+      {(currentPage === 'home' || currentPage === 'menu') && (
+        <Header 
+          onShowCart={() => setShowCart(true)}
+          cartItemCount={getCartItemCount()}
+        />
+      )}
 
       {/* Contenido principal */}
-      // Dentro del return principal de App
-<main>
-  {currentPage === 'inicio' && (
-    <InicioPage />
-  )}
+      <main>
+        {currentPage === 'inicio' && (
+          <InicioPage onNavigateToMenu={(business) => setCurrentPage('home')} />
+        )}
 
-  {currentPage === 'home' && (
-    <Home onShowMenu={() => setCurrentPage('menu')} />
-  )}
+        {currentPage === 'home' && (
+          <Home onShowMenu={() => setCurrentPage('menu')} />
+        )}
 
-  {currentPage === 'menu' && (
-    <Menu 
-      onAddToCart={addToCart}
-      onBackToHome={() => setCurrentPage('home')}
-    />
-  )}
-</main>
+        {currentPage === 'menu' && (
+          <Menu 
+            onAddToCart={addToCart}
+            onBackToHome={() => setCurrentPage('home')}
+          />
+        )}
+      </main>
 
 
       {/* Carrito modal */}
