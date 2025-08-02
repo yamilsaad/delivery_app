@@ -3,16 +3,13 @@ import React, { useState } from "react";
 
 // Importación de imágenes desde src/assets/images
 import logo from "../assets/images/delivery_express_logo.png";
-import falafelImg from "../assets/images/burger.png";
-import kebabImg from "../assets/images/cafe.png";
-import shawarmaImg from "../assets/images/napoli.png";
-import hummusImg from "../assets/images/sushi.png";
+import altairLogo from "../assets/images/altair-logo.svg";
 
 const businesses = [
   {
     id: 1,
     name: "Falafel Express",
-    image: falafelImg,
+    image: altairLogo,
     description: "Deliciosos falafel recién hechos y wraps rápidos.",
     category: "Árabe",
     rating: 4.8,
@@ -27,7 +24,7 @@ const businesses = [
   {
     id: 2,
     name: "Kebab King",
-    image: kebabImg,
+    image: altairLogo,
     description: "Los mejores kebabs de cordero en la ciudad.",
     category: "Árabe",
     rating: 4.6,
@@ -42,7 +39,7 @@ const businesses = [
   {
     id: 3,
     name: "Shawarma House",
-    image: shawarmaImg,
+    image: altairLogo,
     description: "Shawarma auténtico con pan pita casero.",
     category: "Árabe",
     rating: 4.9,
@@ -57,7 +54,7 @@ const businesses = [
   {
     id: 4,
     name: "Hummus Bar",
-    image: hummusImg,
+    image: altairLogo,
     description: "Una variedad de hummus con ingredientes frescos.",
     category: "Vegetariano",
     rating: 4.7,
