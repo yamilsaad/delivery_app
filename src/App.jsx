@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import Header from './components/Header'
+import Inicio from './pages/Inicio_page'
 import Home from './pages/Home'
 import Menu from './pages/Menu'
 import Cart from './components/Cart'
 import Toast from './components/Toast'
 
 function App() {
-  const [currentPage, setCurrentPage] = useState('home')
+  const [currentPage, setCurrentPage] = useState('inicio')
   const [cart, setCart] = useState([])
   const [showCart, setShowCart] = useState(false)
   const [toast, setToast] = useState({ isVisible: false, message: '' })
@@ -77,18 +78,24 @@ function App() {
       />
 
       {/* Contenido principal */}
-      <main>
-        {currentPage === 'home' && (
-          <Home onShowMenu={() => setCurrentPage('menu')} />
-        )}
-        
-        {currentPage === 'menu' && (
-          <Menu 
-            onAddToCart={addToCart}
-            onBackToHome={() => setCurrentPage('home')}
-          />
-        )}
-      </main>
+      // Dentro del return principal de App
+<main>
+  {currentPage === 'inicio' && (
+    <Inicio />
+  )}
+
+  {currentPage === 'home' && (
+    <Home onShowMenu={() => setCurrentPage('menu')} />
+  )}
+
+  {currentPage === 'menu' && (
+    <Menu 
+      onAddToCart={addToCart}
+      onBackToHome={() => setCurrentPage('home')}
+    />
+  )}
+</main>
+
 
       {/* Carrito modal */}
       {showCart && (
