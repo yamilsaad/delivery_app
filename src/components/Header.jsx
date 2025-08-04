@@ -36,9 +36,10 @@ const Header = ({ onShowCart, cartItemCount, onBackToHome }) => {
             {onBackToHome && (
               <button
                 onClick={onBackToHome}
-                className="bg-[#F97316] text-white px-4 py-2 rounded-lg hover:bg-[#1E40AF] transition font-medium"
+                className="bg-[#F97316] text-white px-2 py-4 sm:px-4 sm:py-2 rounded-lg hover:bg-[#1E40AF] transition font-medium text-xs sm:text-base"
               >
-                Volver a Delivery Express
+                <span className="sm:hidden">Delivery Express</span>
+                <span className="hidden sm:inline">Volver a Delivery Express</span>
               </button>
             )}
             
