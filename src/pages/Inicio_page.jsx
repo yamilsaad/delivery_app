@@ -130,7 +130,7 @@ const InicioPage = ({ onNavigateToMenu }) => {
     <div className="bg-gray-50 min-h-screen">
       {/* Header */}
       <header className="bg-white shadow-md sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full px-4 md:px-8">
           <div className="flex items-center justify-between py-4">
             <div className="flex items-center space-x-4">
               <img src={logo} alt="Delivery Express Logo" className="h-16 w-16" />
@@ -152,8 +152,8 @@ const InicioPage = ({ onNavigateToMenu }) => {
       </header>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-[#1E40AF] to-[#1E3A8A] py-16 px-4">
-        <div className="max-w-4xl mx-auto text-center">
+      <section className="bg-gradient-to-br from-[#1E40AF] to-[#1E3A8A] py-16 px-4 md:px-8">
+        <div className="w-full text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white font-sans">
             La comida que amás, 
             <span className="text-[#F97316]"> en minutos</span>
@@ -179,8 +179,8 @@ const InicioPage = ({ onNavigateToMenu }) => {
       </section>
 
       {/* Filtros y búsqueda */}
-      <section className="py-8 px-4 bg-white border-b">
-        <div className="max-w-6xl mx-auto">
+      <section className="py-8 px-4 md:px-8 bg-white border-b w-full">
+        <div className="w-full">
           <div className="flex flex-col lg:flex-row gap-4 items-center justify-between">
             {/* Búsqueda */}
             <div className="relative flex-1 max-w-md">
@@ -228,7 +228,7 @@ const InicioPage = ({ onNavigateToMenu }) => {
       </section>
 
       {/* Lista de negocios */}
-      <section id="negocios" className="py-12 px-4">
+      <section id="negocios" className="py-12 px-4 md:px-8 w-full">
         <div className="max-w-6xl mx-auto">
           {filteredBusinesses.length === 0 ? (
             <div className="text-center py-12">
@@ -324,7 +324,7 @@ const InicioPage = ({ onNavigateToMenu }) => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-[#1E40AF] text-white py-12 px-4">
+      <footer className="bg-[#1E40AF] text-white py-12 px-4 md:px-8 w-full">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="col-span-1 md:col-span-2">
