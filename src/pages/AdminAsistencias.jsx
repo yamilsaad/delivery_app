@@ -289,6 +289,7 @@ const AdminAsistencias = ({ onBackToHome }) => {
               )}
             </button>
 
+            {/* Botón comentado: Enviar por WhatsApp
             <button
               onClick={handleSendWhatsApp}
               disabled={filteredAsistencias.length === 0}
@@ -301,7 +302,9 @@ const AdminAsistencias = ({ onBackToHome }) => {
               <span>📱</span>
               <span>Enviar por WhatsApp</span>
             </button>
+            */}
 
+            {/* Botón comentado: PDF + WhatsApp
             <button
               onClick={handleExportAndSend}
               disabled={exporting || filteredAsistencias.length === 0}
@@ -323,6 +326,7 @@ const AdminAsistencias = ({ onBackToHome }) => {
                 </>
               )}
             </button>
+            */}
           </div>
         </div>
 

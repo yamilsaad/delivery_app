@@ -219,3 +219,32 @@ export const listenToGanadoresRealtime = (callback) => {
     throw error;
   }
 };
+
+// Función para escuchar ganadores en tiempo real para la vista de lista
+export const listenToGanadoresListaRealtime = (callback) => {
+  try {
+    const ganadoresRef = collection(db, "ganadores");
+    const q = query(ganadoresRef, orderBy("fechaSorteo", "desc"));
+    
+    // Retornar la función de unsubscribe para que se pueda limpiar
+    return onSnapshot(q, (snapshot) => {
+      const ganadores = [];
+      
+      snapshot.forEach((doc) => {
+        const ganador = {
+          id: doc.id,
+          ...doc.data()
+        };
+        ganadores.push(ganador);
+      });
+      
+      callback(ganadores);
+    }, (error) => {
+      console.error("Error al escuchar ganadores en tiempo real:", error);
+      callback([]);
+    });
+  } catch (error) {
+    console.error("Error al configurar listener de ganadores para lista:", error);
+    throw error;
+  }
+};

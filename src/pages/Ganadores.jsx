@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getGanadores } from '../services/firestoreService';
+import { listenToGanadoresListaRealtime } from '../services/firestoreService';
 import AsistenciaModal from '../components/AsistenciaModal';
 import logo from '../assets/images/logo.png';
 
@@ -11,30 +11,28 @@ const Ganadores = ({ onBackToHome }) => {
   const [filteredGanadores, setFilteredGanadores] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [participantsPerPage] = useState(25);
-  const [refreshing, setRefreshing] = useState(false);
   const [showAsistenciaModal, setShowAsistenciaModal] = useState(false);
   const [asistenciaRegistrada, setAsistenciaRegistrada] = useState(false);
 
-  const fetchGanadores = async () => {
-    try {
-      setRefreshing(true);
-      const data = await getGanadores();
+  useEffect(() => {
+    // Configurar listener en tiempo real
+    const unsubscribe = listenToGanadoresListaRealtime((data) => {
       setGanadores(data);
       setFilteredGanadores(data);
       setCurrentPage(1); // Reset a la primera página al actualizar
-    } catch (err) {
-      setError('Error al cargar los posicionados');
-      console.error(err);
-    } finally {
-      setRefreshing(false);
       setLoading(false);
-    }
-  };
+      setError(null);
+    });
 
-  useEffect(() => {
-    fetchGanadores();
     // Mostrar modal de asistencia al cargar la página
     setShowAsistenciaModal(true);
+
+    // Cleanup: desuscribirse cuando el componente se desmonte
+    return () => {
+      if (unsubscribe) {
+        unsubscribe();
+      }
+    };
   }, []);
 
   useEffect(() => {
@@ -183,8 +181,12 @@ const Ganadores = ({ onBackToHome }) => {
                   className="h-8 w-auto sm:h-12 object-contain"
                 />
               </div>
-              <h1 className="text-lg sm:text-2xl md:text-3xl font-bold text-white">
-                🏆 Posicionados del Sorteo
+              <h1 className="text-lg sm:text-2xl md:text-3xl font-bold text-white flex items-center justify-center space-x-2">
+                <span>🏆 Posicionados del Sorteo</span>
+                <div className="flex items-center space-x-1">
+                  <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                  <span className="text-green-300 text-xs font-normal">EN VIVO</span>
+                </div>
               </h1>
               {/* Leyenda oficial */}
               <p className="text-white/80 text-xs mt-1">
@@ -198,44 +200,26 @@ const Ganadores = ({ onBackToHome }) => {
 
       {/* Contenido principal */}
       <div className="container mx-auto px-4 py-4 sm:py-6">
-        {/* Botón de actualizar */}
+        {/* Información de actualización en tiempo real */}
         <div className="bg-white/10 backdrop-blur-md rounded-xl sm:rounded-2xl p-4 sm:p-6 mb-4 sm:mb-6">
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-            <div className="text-center sm:text-left">
-              <h3 className="text-white font-semibold text-sm sm:text-base mb-1">
-                🔄 Actualizar Datos
-              </h3>
-              <p className="text-white/80 text-xs sm:text-sm">
-                Haz clic para ver los nuevos posicionados agregados
-              </p>
+          <div className="text-center">
+            <h3 className="text-white font-semibold text-sm sm:text-base mb-2">
+              ✅ Actualización en Tiempo Real
+            </h3>
+            <p className="text-white/80 text-xs sm:text-sm">
+              Los datos se actualizan automáticamente cuando se agregan nuevos posicionados
+            </p>
+            <div className="mt-3 flex items-center justify-center space-x-2">
+              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+              <span className="text-white/80 text-xs">Conectado en vivo</span>
             </div>
-            <button
-              onClick={fetchGanadores}
-              disabled={refreshing}
-              className={`flex items-center space-x-2 px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold text-sm sm:text-base transition-all duration-300 transform hover:scale-105 ${
-                refreshing
-                  ? 'bg-gray-400 text-gray-600 cursor-not-allowed'
-                  : 'bg-gradient-to-r from-orange-500 to-red-600 text-white hover:from-orange-600 hover:to-red-700 shadow-lg'
-              }`}
-            >
-              {refreshing ? (
-                <>
-                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-                  <span>Actualizando...</span>
-                </>
-              ) : (
-                <>
-                  <span>🔄</span>
-                  <span>Actualizar Página</span>
-                </>
-              )}
-            </button>
           </div>
         </div>
 
         {/* Estadísticas */}
         <div className="bg-white/10 backdrop-blur-md rounded-xl sm:rounded-2xl p-4 sm:p-6 mb-4 sm:mb-6 text-center">
           <h2 className="text-lg sm:text-xl font-bold text-white mb-3 sm:mb-4">📊 Estadísticas</h2>
+          <p className="text-white/70 text-xs mb-3">Actualizadas automáticamente en tiempo real</p>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
             <div className="bg-white/20 rounded-lg p-3 sm:p-4">
               <div className="text-xl sm:text-2xl font-bold text-white">{ganadores.length}</div>
@@ -315,6 +299,12 @@ const Ganadores = ({ onBackToHome }) => {
           <h2 className="text-lg sm:text-xl font-bold text-white mb-4 sm:mb-6 text-center">
             🎯 Lista de Posicionados
           </h2>
+          <div className="text-center mb-4">
+            <div className="inline-flex items-center space-x-2 bg-green-500/20 text-green-300 px-3 py-1 rounded-full text-xs">
+              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+              <span>Conectado en tiempo real</span>
+            </div>
+          </div>
           
           {filteredGanadores.length === 0 ? (
             <div className="text-center py-6 sm:py-8">
@@ -438,6 +428,10 @@ const Ganadores = ({ onBackToHome }) => {
             <p className="text-xs">
               <span className="font-bold">Dirección de TICs</span> - Subsecretaría de Innovación y Comunicación
             </p>
+            <div className="mt-2 flex items-center justify-center space-x-2">
+              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+              <span className="text-xs text-green-300">Página conectada en tiempo real</span>
+            </div>
           </div>
         </div>
       </footer>

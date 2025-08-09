@@ -261,6 +261,7 @@ const PosicionesParticipantes = ({ onBackToHome }) => {
               )}
             </button>
 
+            {/* Botón comentado: Enviar por WhatsApp
             <button
               onClick={handleSendWhatsApp}
               disabled={exporting}
@@ -282,7 +283,9 @@ const PosicionesParticipantes = ({ onBackToHome }) => {
                 </>
               )}
             </button>
+            */}
 
+            {/* Botón comentado: PDF + WhatsApp
             <button
               onClick={handleExportAndSend}
               disabled={exporting}
@@ -304,6 +307,7 @@ const PosicionesParticipantes = ({ onBackToHome }) => {
                 </>
               )}
             </button>
+            */}
           </div>
         </div>
 
