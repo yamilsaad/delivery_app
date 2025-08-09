@@ -5,6 +5,9 @@ import Menu from './pages/Menu'
 import InicioPage from './pages/Inicio_page'
 import SorteoInicio from './pages/SorteoInicio'
 import Ganadores from './pages/Ganadores'
+import PosicionesParticipantes from './pages/PosicionesParticipantes'
+import AdminLogin from './components/AdminLogin'
+import AdminAsistencias from './pages/AdminAsistencias'
 import Cart from './components/Cart'
 import Toast from './components/Toast'
 import './App.css'
@@ -14,6 +17,9 @@ function App() {
   const [cart, setCart] = useState([])
   const [showCart, setShowCart] = useState(false)
   const [toast, setToast] = useState({ isVisible: false, message: '' })
+  const [showAdminLogin, setShowAdminLogin] = useState(false)
+  const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false)
+  const [adminLoginDestination, setAdminLoginDestination] = useState('admin-asistencias')
 
   const addToCart = (item) => {
     setCart(prevCart => {
@@ -72,6 +78,44 @@ function App() {
     setToast({ isVisible: false, message: '' })
   }
 
+  const handleNavigateToAdmin = () => {
+    if (isAdminLoggedIn) {
+      setCurrentPage('admin-asistencias')
+    } else {
+      setAdminLoginDestination('admin-asistencias')
+      setShowAdminLogin(true)
+    }
+  }
+
+  const handleNavigateToPosiciones = () => {
+    if (isAdminLoggedIn) {
+      setCurrentPage('posiciones')
+    } else {
+      setAdminLoginDestination('posiciones')
+      setShowAdminLogin(true)
+    }
+  }
+
+  const handleAdminLoginSuccess = () => {
+    setIsAdminLoggedIn(true)
+    setShowAdminLogin(false)
+    // Redirigir a la página que el usuario quería acceder
+    setCurrentPage(adminLoginDestination)
+    setToast({
+      isVisible: true,
+      message: '¡Acceso administrativo exitoso!'
+    })
+  }
+
+  const handleAdminLoginClose = () => {
+    setShowAdminLogin(false)
+  }
+
+  const handleBackToHome = () => {
+    setCurrentPage('sorteo-inicio')
+    setIsAdminLoggedIn(false) // Cerrar sesión al volver
+  }
+
   return (
     <div className="App">
       {/* Header solo visible en páginas de negocio específico */}
@@ -95,6 +139,8 @@ function App() {
         {currentPage === 'sorteo-inicio' && (
           <SorteoInicio 
             onNavigateToGanadores={() => setCurrentPage('ganadores')}
+            onNavigateToPosiciones={handleNavigateToPosiciones}
+            onNavigateToAdmin={handleNavigateToAdmin}
           />
         )}
 
@@ -112,7 +158,23 @@ function App() {
         {currentPage === 'ganadores' && (
           <Ganadores onBackToHome={() => setCurrentPage('sorteo-inicio')} />
         )}
+
+        {currentPage === 'posiciones' && (
+          <PosicionesParticipantes onBackToHome={() => setCurrentPage('sorteo-inicio')} />
+        )}
+
+        {currentPage === 'admin-asistencias' && (
+          <AdminAsistencias onBackToHome={handleBackToHome} />
+        )}
       </main>
+
+      {/* Modal de Login Administrativo */}
+      {showAdminLogin && (
+        <AdminLogin
+          onLoginSuccess={handleAdminLoginSuccess}
+          onClose={handleAdminLoginClose}
+        />
+      )}
 
       {/* Carrito modal */}
       {showCart && (
