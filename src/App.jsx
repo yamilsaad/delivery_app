@@ -3,12 +3,14 @@ import Header from './components/Header'
 import Home from './pages/Home'
 import Menu from './pages/Menu'
 import InicioPage from './pages/Inicio_page'
+import SorteoInicio from './pages/SorteoInicio'
+import Ganadores from './pages/Ganadores'
 import Cart from './components/Cart'
 import Toast from './components/Toast'
 import './App.css'
 
 function App() {
-  const [currentPage, setCurrentPage] = useState('inicio')
+  const [currentPage, setCurrentPage] = useState('sorteo-inicio')
   const [cart, setCart] = useState([])
   const [showCart, setShowCart] = useState(false)
   const [toast, setToast] = useState({ isVisible: false, message: '' })
@@ -84,7 +86,16 @@ function App() {
       {/* Contenido principal */}
       <main>
         {currentPage === 'inicio' && (
-          <InicioPage onNavigateToMenu={(business) => setCurrentPage('home')} />
+          <InicioPage 
+            onNavigateToMenu={(business) => setCurrentPage('home')}
+            onNavigateToGanadores={() => setCurrentPage('ganadores')}
+          />
+        )}
+
+        {currentPage === 'sorteo-inicio' && (
+          <SorteoInicio 
+            onNavigateToGanadores={() => setCurrentPage('ganadores')}
+          />
         )}
 
         {currentPage === 'home' && (
@@ -97,8 +108,11 @@ function App() {
             onBackToHome={() => setCurrentPage('home')}
           />
         )}
-      </main>
 
+        {currentPage === 'ganadores' && (
+          <Ganadores onBackToHome={() => setCurrentPage('sorteo-inicio')} />
+        )}
+      </main>
 
       {/* Carrito modal */}
       {showCart && (

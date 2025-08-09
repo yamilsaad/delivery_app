@@ -70,7 +70,7 @@ const businesses = [
 
 const categories = ["Todos", "Árabe", "Vegetariano", "Pizza", "Sushi", "Burger"];
 
-const InicioPage = ({ onNavigateToMenu }) => {
+const InicioPage = ({ onNavigateToMenu, onNavigateToGanadores }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("Todos");
   const [sortBy, setSortBy] = useState("featured");
@@ -100,20 +100,25 @@ const InicioPage = ({ onNavigateToMenu }) => {
     return new Intl.NumberFormat('es-CO', {
       style: 'currency',
       currency: 'COP'
-    }).format(price);
-  };
+    }).format(price)
+  }
 
   const renderStars = (rating) => {
-    const fullStars = Math.floor(rating);
-    const hasHalfStar = rating % 1 >= 0.5;
     const stars = [];
+    const fullStars = Math.floor(rating);
+    const hasHalfStar = rating % 1 !== 0;
 
     for (let i = 0; i < fullStars; i++) {
-      stars.push(<span key={i} className="text-yellow-400">⭐</span>);
+      stars.push(<span key={i} className="text-yellow-400">★</span>);
     }
-    
+
     if (hasHalfStar) {
-      stars.push(<span key="half" className="text-yellow-400">⭐</span>);
+      stars.push(<span key="half" className="text-yellow-400">☆</span>);
+    }
+
+    const emptyStars = 5 - stars.length;
+    for (let i = 0; i < emptyStars; i++) {
+      stars.push(<span key={`empty-${i}`} className="text-gray-300">★</span>);
     }
 
     return stars;
@@ -161,7 +166,9 @@ const InicioPage = ({ onNavigateToMenu }) => {
           <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
             Descubre los mejores restaurantes de tu ciudad. Pedí fácil, rápido y directo desde cada negocio.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          
+          {/* Botones de acción */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
             <div className="flex items-center space-x-2 text-blue-100">
               <span className="text-[#F97316] text-xl">✓</span>
               <span>Sin comisiones extras</span>
@@ -175,6 +182,18 @@ const InicioPage = ({ onNavigateToMenu }) => {
               <span>Delivery rápido</span>
             </div>
           </div>
+
+          {/* Botón para ganadores */}
+          {onNavigateToGanadores && (
+            <div className="mt-8">
+              <button
+                onClick={onNavigateToGanadores}
+                className="bg-gradient-to-r from-orange-500 to-red-600 text-white font-bold py-4 px-8 rounded-full hover:from-orange-600 hover:to-red-700 transition-all duration-300 transform hover:scale-105 shadow-lg text-lg"
+              >
+                🏆 Ver Ganadores del Sorteo
+              </button>
+            </div>
+          )}
         </div>
       </section>
 
